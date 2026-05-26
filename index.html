@@ -13,13 +13,74 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg: lightgray;
+            --text: black;
+        }
+
+        /* THEMES */
+        [data-theme="default"] {
+            --bg: lightgray;
+            --text: black;
+            --header-bg: #000;
+            --header-text: #fff;
+            --card-bg: #000;
+            --border: #000;
+            --heading: #333;
+        }
+
+        [data-theme="os"] {
+            color-scheme: light dark;
+            --bg: lightgray;
+            --text: black;
+            --header-bg: #000;
+            --header-text: #fff;
+            --card-bg: #111;
+            --border: #666;
+            --heading: #ddd;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            [data-theme="os"] {
+                --bg: #1f1f1f;
+                --text: #f2f2f2;
+                --card-bg: #111;
+                --border: #666;
+                --heading: #ddd;
+            }
+        }
+
+        [data-theme="light"] {
+            --bg: #f7f7f7;
+            --text: #111;
+            --header-bg: #fff;
+            --header-text: #111;
+            --card-bg: #ddd;
+            --border: #999;
+            --heading: #222;
+        }
+
+        [data-theme="dark"] {
+            --bg: #1f1f1f;
+            --text: #f2f2f2;
+            --card-bg: #111;
+            --border: #666;
+        }
+
+        [data-theme="contrast"] {
+            --bg: #000;
+            --text: #fff;
+            --header-text: #ffff00;
+            --border: #fff;
+        }
+
+        /* BASE LAYOUT */
         body {
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
             margin: 0;
-            padding: 0;
-            background-color: lightgray;
-            color: black;
+            background: var(--bg);
+            color: var(--text);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .page-wrapper {
@@ -29,241 +90,228 @@
         }
 
         header {
-            background: #000;
-            color: white;
+            background: var(--header-bg);
+            color: var(--header-text);
             text-align: center;
-            padding: 16px 16px;
+            padding: 16px;
         }
 
-        header img {
-            display: block;
-            margin: 0 auto;
-        }
-
+        /* ALBUM GRID (MOBILE FIRST) */
         .slideshow-container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             gap: 24px;
-            flex-wrap: wrap;
             margin: 40px 0;
         }
 
+        .slideshow-container h2 {
+            width: 100%;
+            font-size: 1.8rem;
+            color: var(--heading);
+            border-bottom: 3px solid var(--border);
+            padding-bottom: 4px;
+        }
+
+        /* album card */
         .slideshow-block {
             position: relative;
-            /* important */
-            flex: 1 1 calc(25% - 24px);
-            /* THIS CHANGES THE AMOUNT OF COLUMNS DIVIDED BY SCREEN SIZE */
-            max-width: 400px;
+            width: 100%;
+            height: 220px;
             border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
+            background: var(--card-bg);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            background-color: #000;
-            /* letterbox background */
-            /* remove flex centering because images are absolutely positioned */
-            /* display: flex; */
-            /* align-items: center; */
-            /* justify-content: center; */
-            height: 220px;
-            /* fixed height */
         }
 
-        .slideshow-block img.slide {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 8px;
-            object-fit: contain;
-            /* or cover based on orientation */
-            transition: opacity 1s ease-in-out;
-            opacity: 0;
-        }
+        /* slideshow images */
+.slideshow-block img.slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.6s ease;
+    will-change: transform;
+}
 
         .slideshow-block img.slide.active {
             opacity: 1;
-            position: absolute;
-            /* keep absolute */
-            transform: translate(-50%, -50%);
         }
 
+        /* HOVER OVERLAY */
+        /* optional zoom (subtle polish) */
+.slideshow-block:hover img.slide.active {
+    transform: scale(1.06);
+}
 
-        .slideshow-block .overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-            padding: 8px 12px;
-            text-align: center;
+        /* centered hover text (your original UI feel) */
+.slideshow-block .overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 10px 12px;
+    text-align: center;
+
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.05rem;
+
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    pointer-events: none;
+    user-select: none;
+
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    transform: translateY(10px);
+}
+
+.slideshow-block:hover .overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+        /* DESKTOP VIEW */
+        @media (min-width: 768px) {
+
+            .slideshow-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .slideshow-block {
+                flex: 1 1 calc(25% - 24px);
+                max-width: 400px;
+            }
+        }
+
+        /* GRID */
+.portfolio-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+/* base image behaviour (IMPORTANT) */
+.portfolio-images img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+
+    border-radius: 8px;
+    background: #000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* portrait images (tall) */
+.portfolio-images img.portrait {
+    height: 320px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* landscape images (wide) */
+.portfolio-images img.landscape {
+    width: 320px;
+    height: auto;
+    object-fit: cover;
+}
+
+        @media (min-width: 600px) {
+            .portfolio-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .portfolio-images {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .portfolio-images img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
             border-radius: 8px;
-            pointer-events: none;
-            user-select: none;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            max-width: 90%;
-            line-height: 1.4;
-            word-break: break-word;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-
-        .slideshow-block:hover .overlay {
-            opacity: 1;
-        }
-
-        .slideshow-block:hover img.slide.active {
-            opacity: 0.3;
-        }
-
-        .section-label {
-            text-align: center;
-            margin-top: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
+        /* SECTIONS */
         section.portfolio-section {
-            margin: 40px 0;
             display: none;
+            margin: 40px 0;
         }
 
         section.portfolio-section.active {
             display: block;
         }
 
-        .portfolio-images {
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        /* Portrait images: taller */
-        .portfolio-images img.portrait {
-            width: auto;
-            height: 320px;
-            object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            background-color: #000;
-            /* letterbox background */
-        }
-
-        /* Landscape images: wider */
-        .portfolio-images img.landscape {
-            width: 320px;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            background-color: #000;
-            /* letterbox background */
-        }
-
-        @media screen and (max-width: 768px) {
-            .slideshow-block {
-                flex: 1 1 100%;
-                max-width: 100%;
-                height: auto;
-            }
-
-            .slideshow-block img.slide {
-                position: relative;
-                max-width: 100%;
-                max-height: 400px;
-                transform: none;
-            }
-
-            .portfolio-images img.portrait,
-            .portfolio-images img.landscape {
-                height: auto;
-                max-width: 100%;
-            }
-        }
-
+        /* BUTTONS */
         #backToTop,
         #backToAlbums {
             position: fixed;
             bottom: 24px;
-            z-index: 99;
-            background-color: #000;
-            color: #fff;
-            border: none;
+            z-index: 9999;
+
             padding: 12px 16px;
-            border-radius: 4px;
-            font-size: 16px;
+            border-radius: 12px;
+
             cursor: pointer;
-            opacity: 0.8;
             display: none;
-            transition: opacity 0.3s ease;
+
+            color: #fff;
+            font-size: 14px;
+
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+
+            transition: transform 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
         }
 
+        /* hover = lift + glow */
         #backToTop:hover,
         #backToAlbums:hover {
-            opacity: 1;
+            transform: translateY(-4px);
+
+            background: rgba(0, 0, 0, 0.35);
+
+            border-color: rgba(255, 255, 255, 0.35);
+
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
         }
 
+        /* spacing */
         #backToTop {
             right: 24px;
         }
 
         #backToAlbums {
             right: 120px;
-            /* space it left of the "Top" button */
         }
 
-
-        hr {
-            border: 0;
-            border-top: 5px solid black;
-            margin: 30px 0 10px;
-        }
-
-        .slideshow-container h2 {
-            width: 100%;
-            font-size: 1.8rem;
-            color: #333;
-            border-bottom: 3px solid #000;
-            padding-bottom: 4px;
-            margin-bottom: 24px;
-        }
-
-        .mySlides {
-            display: none;
-max-height: 75%;
-            
-        }
-
-        .responsive {
-            max-width: 100%;
-            max-height: 100%
-        }
-
-
-
-        .w3-animate-opacity {
-            animation: opac 0.8s
-        }
-
-        @keyframes opac {
-            from {
-                opacity: 0
-            }
-
-            to {
-                opacity: 1
-            }
-        }
-
+        /* SOCIAL ICONS */
         .social-icon {
             font-size: 40px;
-            padding: 12px;
+            padding: 0px 12px;
             text-align: center;
             color: #888;
             transition: all 0.25s ease;
@@ -308,6 +356,158 @@ max-height: 75%;
             color: #e1306c;
             text-shadow: 0 0 8px #e1306c;
         }
+
+
+        /* THEME SWITCHER */
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+
+            padding: 10px 14px;
+            color: #fff;
+
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        /* IMPORTANT: no hover effect on theme switcher */
+        .theme-switcher:hover {
+            transform: none;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        /* dropdown itself stays clean */
+        .theme-switcher select {
+            border-radius: 6px;
+            padding: 4px 8px;
+            border: none;
+            outline: none;
+        }
+
+        /* =========================
+   HEADER BANNER SLIDESHOW
+========================= */
+
+        header {
+            background: var(--header-bg);
+            color: var(--header-text);
+            text-align: center;
+            padding: 16px;
+        }
+
+        /* IMPORTANT: keeps images centered like original */
+        header .mySlides {
+            display: none;
+            margin: 0 auto;
+            max-width: 100%;
+            max-height: 320px;
+            object-fit: contain;
+        }
+
+        /* ensures proper centering context */
+        header {
+            position: relative;
+        }
+
+        /* fade animation (original feel) */
+        .w3-animate-opacity {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* responsive fallback */
+        .responsive {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+
+
+/* =========================
+   SHIELDS-STYLE BADGES (CENTERED VALUES)
+========================= */
+
+#StatsImageCount,
+#StatsGalleryCount {
+    display: inline-flex;
+    align-items: stretch;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    margin: 6px;
+    border-radius: 6px;
+    overflow: hidden;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* LEFT LABEL */
+.badge-label {
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+
+    padding: 4px 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* RIGHT VALUE (CENTERED PERFECTLY) */
+.badge-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 34px;   /* keeps alignment stable */
+    padding: 4px 10px;
+
+    color: #000;
+}
+
+/* COLORS */
+#StatsImageCount {
+    background: #4c1;
+}
+
+#StatsGalleryCount {
+    background: #007ec6;
+}
+
+@media (max-width: 768px) {
+    .slideshow-block .overlay {
+        opacity: 1;
+        transform: none;
+
+        width: 100%;
+        border-radius: 0;
+
+        font-size: 1rem;
+        padding: 10px;
+
+        background: rgba(0, 0, 0, 0.65);
+    }
+}
+
     </style>
 </head>
 
@@ -331,7 +531,7 @@ max-height: 75%;
             src="https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/abp/Rwby Banner.jpg"
             alt="RWBY">
         <!-- Business Cards/mashups END-->
-
+        <br>
         <!-- socials START-->
         <a href="https://www.facebook.com/AndrewBaylissPhotography" target="_blank"><i
                 class="fa fa-facebook-official social-icon facebook"></i></a>
@@ -346,8 +546,22 @@ max-height: 75%;
         <!-- socials END-->
 
         <h1>Andrew Bayliss Photography</h1>
+
         <div id="StatsImageCount"></div>
         <div id="StatsGalleryCount"></div>
+
+        <!-- prefab theme switcher -->
+        <div class="theme-switcher">
+            <label for="themeSelect">Theme:</label>
+
+            <select id="themeSelect">
+                <option value="default">Default</option>
+                <option value="os">OS Theme</option>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+                <option value="contrast">High Contrast</option>
+            </select>
+        </div>
 
     </header>
 
@@ -367,7 +581,7 @@ max-height: 75%;
             // Add new gallery here:
             {
                 id: "202603_megacon-Birmingham",
-                title: "2023.06: MegaconLive Birmingham ",
+                title: "2023.06: MegaconLive Birmingham",
                 year: "2026",
                 images: [
                     { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQRe8gZEdyAzSI7dITDklCoNASsKLpUvMM7SACqkh-xK3tc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5605.JPG", tags: ["megacon", "megacon birmingham", "borderlands", "borderlands | gaige"] },
@@ -4723,30 +4937,30 @@ max-height: 75%;
                 title: "2017.09: Film and Comic Con Cardiff",
                 year: "2017",
                 images: [
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG3c0AAAAAAd23A3RKurt-FL8EuOWs6yU?", tags: ["showmasters", "showmasters | film and comic con cardiff", "star wars", "Edits"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG3s0AAAAAAfTxtVIcoPyOAgecDE9nUxc?", tags: ["showmasters", "showmasters | film and comic con cardiff", "star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG3M0AAAAAAdhW1EdZMEOVAPFXRgJuAaQ?", tags: ["showmasters", "showmasters | film and comic con cardiff", "star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG4c0AAAAAAVFvUpcYGylABZ9td9Oifqg?", tags: ["showmasters", "showmasters | film and comic con cardiff", "star wars", "Edits"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG4M0AAAAAAfC_BrQkDtH9wRNGdIonXyw?", tags: ["showmasters", "showmasters | film and comic con cardiff", "star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG4s0AAAAAAU39QBLLz4jMKptauxIlMJ8?", tags: ["showmasters", "showmasters | film and comic con cardiff", "star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG380AAAAAAcWfz2FBzfcrefaNxxVTuhY?", tags: ["showmasters", "showmasters | film and comic con cardiff", "lemonbird cosplay", "borderlands", "borderlands | tiny tina", "Edits"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG580AAAAAAfHoEDOswWO0b-BagybyILE?", tags: ["showmasters", "showmasters | film and comic con cardiff", "lemonbird cosplay", "borderlands", "borderlands | tiny tina"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG6M0AAAAAAUevnyFsGFYVyLD9fE1PXu0?", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG6s0AAAAAARS2254I6eeL_1Kgttds-oI?", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG7s0AAAAAAR5g6gcCtTIQgSziqfbXdpQ?", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG8M0AAAAAAVwvd-HlSccxRt9OnWQJ_Xs?", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG8M0AAAAAAVwvd-HlSccxRt9OnWQJ_Xs?", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG3c0AAAAAAd23A3RKurt-FL8EuOWs6yU?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8330.jpg", tags: ["showmasters", "showmasters | film and comic con cardiff", "star wars", "Edits"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG3s0AAAAAAfTxtVIcoPyOAgecDE9nUxc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8332.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff", "star wars"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG3M0AAAAAAdhW1EdZMEOVAPFXRgJuAaQ?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8346.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff", "star wars"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG4c0AAAAAAVFvUpcYGylABZ9td9Oifqg?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8352.jpg", tags: ["showmasters", "showmasters | film and comic con cardiff", "star wars", "Edits"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG4M0AAAAAAfC_BrQkDtH9wRNGdIonXyw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8353.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff", "star wars"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG4s0AAAAAAU39QBLLz4jMKptauxIlMJ8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8360.jpg", tags: ["showmasters", "showmasters | film and comic con cardiff", "star wars"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG380AAAAAAcWfz2FBzfcrefaNxxVTuhY?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8371.jpg", tags: ["showmasters", "showmasters | film and comic con cardiff", "lemonbird cosplay", "borderlands", "borderlands | tiny tina", "Edits"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG580AAAAAAfHoEDOswWO0b-BagybyILE?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8386.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff", "lemonbird cosplay", "borderlands", "borderlands | tiny tina"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG6M0AAAAAAUevnyFsGFYVyLD9fE1PXu0?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8405.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG6s0AAAAAARS2254I6eeL_1Kgttds-oI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8409.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG7s0AAAAAAR5g6gcCtTIQgSziqfbXdpQ?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8419.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG8M0AAAAAAVwvd-HlSccxRt9OnWQJ_Xs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8432.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG8M0AAAAAAVwvd-HlSccxRt9OnWQJ_Xs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8443.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
 
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG5c0AAAAAAZT5uDtUF8fi81ex_BSTepg?", tags: ["showmasters", "showmasters | film and comic con cardiff", "lemonbird cosplay", "borderlands", "borderlands | tiny tina"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG480AAAAAAXQWwvlZyDUYzxStZ27A14k?", tags: ["showmasters", "showmasters | film and comic con cardiff", "lemonbird cosplay", "borderlands", "borderlands | tiny tina"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG5M0AAAAAAYobvrUd89bJnPBF1OQdQB0?", tags: ["showmasters", "showmasters | film and comic con cardiff", "lemonbird cosplay", "borderlands", "borderlands | tiny tina"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG5s0AAAAAAU5z_VBeZs_rB78WJKXwkKU?", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG680AAAAAAUM88CO5nvGD2xhQB2YtyMc?", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG6c0AAAAAAeUgELgbv4QezJZkB_bXB3Q?", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG7c0AAAAAASI6RBzqHMQgwQl7dDyOqZs?", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG8s0AAAAAAQalRIcnBz2YJw4HiDR6CNM?", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG780AAAAAAZcSguSWo1WVFnhsRpU7qSU?", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG8c0AAAAAAbDO6DpGELoSsaGtrkw8oNI?", tags: ["showmasters", "showmasters | film and comic con cardiff", "team fortress"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG5c0AAAAAAZT5uDtUF8fi81ex_BSTepg?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8372.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff", "lemonbird cosplay", "borderlands", "borderlands | tiny tina"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG480AAAAAAXQWwvlZyDUYzxStZ27A14k?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8374.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff", "lemonbird cosplay", "borderlands", "borderlands | tiny tina"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG5M0AAAAAAYobvrUd89bJnPBF1OQdQB0?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8375.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff", "lemonbird cosplay", "borderlands", "borderlands | tiny tina"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG5s0AAAAAAU5z_VBeZs_rB78WJKXwkKU?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8396.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG680AAAAAAUM88CO5nvGD2xhQB2YtyMc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8403.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG6c0AAAAAAeUgELgbv4QezJZkB_bXB3Q?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8415.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG7c0AAAAAASI6RBzqHMQgwQl7dDyOqZs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8417.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG8s0AAAAAAQalRIcnBz2YJw4HiDR6CNM?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8428.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG780AAAAAAZcSguSWo1WVFnhsRpU7qSU?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8435.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG8c0AAAAAAbDO6DpGELoSsaGtrkw8oNI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/201709_cfcc/DSC_8445.JPG", tags: ["showmasters", "showmasters | film and comic con cardiff", "team fortress"] },
                 ]
             },
 
@@ -7572,10 +7786,10 @@ max-height: 75%;
                 block.appendChild(overlay);
 
                 // Label
-                const label = document.createElement('div');
-                label.className = 'section-label';
-                label.textContent = gallery.title;
-                block.appendChild(label);
+                /*                 const label = document.createElement('div');
+                                label.className = 'section-label';
+                                label.textContent = gallery.title;
+                                block.appendChild(label); */
 
                 slideshowContainer.appendChild(block);
 
@@ -7731,12 +7945,13 @@ max-height: 75%;
         }
 
         // Display the count in the element with ID 'StatsImageCount'
-        const countDisplay = document.getElementById('StatsImageCount');
-        if (countDisplay) {
-            countDisplay.textContent = 'Number of images: ' + urlCount;
-        } else {
-            console.warn("Element with ID 'StatsImageCount' not found.");
-        }
+const countDisplay = document.getElementById('StatsImageCount');
+if (countDisplay) {
+    countDisplay.innerHTML = `
+        <span class="badge-label">Images</span>
+        <span class="badge-value">${urlCount}</span>
+    `;
+}
 
         // <!-- TOTAL URL COUNT:End -->
 
@@ -7752,12 +7967,13 @@ max-height: 75%;
         }
 
         // Display the count in the element with ID 'StatsGalleryCount'
-        const headerCountDisplay = document.getElementById('StatsGalleryCount');
-        if (headerCountDisplay) {
-            headerCountDisplay.textContent = 'Number of events: ' + headerCount;
-        } else {
-            console.warn("Element with ID 'StatsGalleryCount' not found.");
-        }
+const headerCountDisplay = document.getElementById('StatsGalleryCount');
+if (headerCountDisplay) {
+    headerCountDisplay.innerHTML = `
+        <span class="badge-label">Events</span>
+        <span class="badge-value">${headerCount}</span>
+    `;
+}
 
         // <!-- TOTAL Album COUNT:End -->
 
@@ -7778,6 +7994,26 @@ max-height: 75%;
         }
         // <!-- BannerSlideshow:End -->
 
+
+
+        // Detect OS preference START
+        const themeSelect = document.getElementById('themeSelect');
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+
+        function applyTheme(value) {
+            document.documentElement.setAttribute('data-theme', value);
+        }
+
+        applyTheme('os');
+        themeSelect.value = 'os';
+        // Detect OS preference END
+
+        themeSelect.addEventListener('change', (e) => {
+            applyTheme(e.target.value);
+        });
     </script>
 
 </body>
