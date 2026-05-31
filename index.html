@@ -18,7 +18,7 @@
             --text: black;
         }
 
-        /* THEMES */
+        /* THEMES START */
         [data-theme="default"] {
             --bg: lightgray;
             --text: black;
@@ -74,6 +74,8 @@
             --border: #fff;
         }
 
+        /* THEMES END */
+
         /* BASE LAYOUT */
         body {
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -104,7 +106,8 @@
             margin: 40px 0;
         }
 
-        .slideshow-container h2 {
+        .slideshow-container h2,
+        .portfolio-section h2 {
             width: 100%;
             font-size: 1.8rem;
             color: var(--heading);
@@ -125,58 +128,57 @@
         }
 
         /* slideshow images */
-.slideshow-block img.slide {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+        .slideshow-block img.slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
 
-    opacity: 0;
-    transition: transform 0.4s ease, opacity 0.6s ease;
-    will-change: transform;
-}
+            opacity: 0;
+            transition: transform 0.4s ease, opacity 0.6s ease;
+            will-change: transform;
+        }
 
         .slideshow-block img.slide.active {
             opacity: 1;
         }
 
         /* HOVER OVERLAY */
-        /* optional zoom (subtle polish) */
-.slideshow-block:hover img.slide.active {
-    transform: scale(1.06);
-}
+        .slideshow-block:hover img.slide.active {
+            transform: scale(1.06);
+        }
 
-        /* centered hover text (your original UI feel) */
-.slideshow-block .overlay {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
+        /* centered hover text */
+        .slideshow-block .overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
 
-    padding: 10px 12px;
-    text-align: center;
+            padding: 10px 12px;
+            text-align: center;
 
-    color: #fff;
-    font-weight: bold;
-    font-size: 1.05rem;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.05rem;
 
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
 
-    pointer-events: none;
-    user-select: none;
+            pointer-events: none;
+            user-select: none;
 
-    opacity: 0;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    transform: translateY(10px);
-}
+            opacity: 0;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            transform: translateY(10px);
+        }
 
-.slideshow-block:hover .overlay {
-    opacity: 1;
-    transform: translateY(0);
-}
+        .slideshow-block:hover .overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* DESKTOP VIEW */
         @media (min-width: 768px) {
@@ -194,38 +196,38 @@
         }
 
         /* GRID */
-.portfolio-images {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-    align-items: flex-start;
-}
+        .portfolio-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            align-items: flex-start;
+        }
 
-/* base image behaviour (IMPORTANT) */
-.portfolio-images img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+        /* base image behaviour (IMPORTANT) */
+        .portfolio-images img {
+            max-width: 100%;
+            height: auto;
+            display: block;
 
-    border-radius: 8px;
-    background: #000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
+            border-radius: 8px;
+            background: #000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
 
-/* portrait images (tall) */
-.portfolio-images img.portrait {
-    height: 320px;
-    width: auto;
-    object-fit: contain;
-}
+        /* portrait images (tall) */
+        .portfolio-images img.portrait {
+            height: 320px;
+            width: auto;
+            object-fit: contain;
+        }
 
-/* landscape images (wide) */
-.portfolio-images img.landscape {
-    width: 320px;
-    height: auto;
-    object-fit: cover;
-}
+        /* landscape images (wide) */
+        .portfolio-images img.landscape {
+            width: 320px;
+            height: auto;
+            object-fit: cover;
+        }
 
         @media (min-width: 600px) {
             .portfolio-images {
@@ -291,11 +293,8 @@
         #backToTop:hover,
         #backToAlbums:hover {
             transform: translateY(-4px);
-
             background: rgba(0, 0, 0, 0.35);
-
             border-color: rgba(255, 255, 255, 0.35);
-
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
         }
 
@@ -318,7 +317,6 @@
             border-radius: 8px;
             margin: 15px 0;
         }
-
 
         .social-icon:hover {
             transform: scale(1.2);
@@ -357,24 +355,19 @@
             text-shadow: 0 0 8px #e1306c;
         }
 
-
         /* THEME SWITCHER */
         .theme-switcher {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 9999;
-
             background: rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 10px;
-
             padding: 10px 14px;
             color: #fff;
-
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
         }
 
@@ -392,10 +385,7 @@
             outline: none;
         }
 
-        /* =========================
-   HEADER BANNER SLIDESHOW
-========================= */
-
+        /* HEADER BANNER SLIDESHOW */
         header {
             background: var(--header-bg);
             color: var(--header-text);
@@ -403,7 +393,6 @@
             padding: 16px;
         }
 
-        /* IMPORTANT: keeps images centered like original */
         header .mySlides {
             display: none;
             margin: 0 auto;
@@ -412,12 +401,10 @@
             object-fit: contain;
         }
 
-        /* ensures proper centering context */
         header {
             position: relative;
         }
 
-        /* fade animation (original feel) */
         .w3-animate-opacity {
             animation: fadeIn 1s ease-in-out;
         }
@@ -440,74 +427,283 @@
             margin: 0 auto;
         }
 
+        /* SHIELDS-STYLE BADGES */
+        #StatsImageCount,
+        #StatsGalleryCount {
+            display: inline-flex;
+            align-items: stretch;
 
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            font-weight: 600;
 
-/* =========================
-   SHIELDS-STYLE BADGES (CENTERED VALUES)
-========================= */
+            margin: 6px;
+            border-radius: 6px;
+            overflow: hidden;
 
-#StatsImageCount,
-#StatsGalleryCount {
-    display: inline-flex;
-    align-items: stretch;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
 
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
+        /* LEFT LABEL */
+        .badge-label {
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
 
-    margin: 6px;
-    border-radius: 6px;
-    overflow: hidden;
+            padding: 4px 10px;
+            display: flex;
+            align-items: center;
+        }
 
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
+        /* RIGHT VALUE (CENTERED PERFECTLY) */
+        .badge-value {
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-/* LEFT LABEL */
-.badge-label {
-    background: rgba(0,0,0,0.6);
-    color: #fff;
+            min-width: 34px;
+            /* keeps alignment stable */
+            padding: 4px 10px;
 
-    padding: 4px 10px;
-    display: flex;
-    align-items: center;
-}
+            color: #000;
+        }
 
-/* RIGHT VALUE (CENTERED PERFECTLY) */
-.badge-value {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        /* COLORS */
+        #StatsImageCount {
+            background: #4c1;
+        }
 
-    min-width: 34px;   /* keeps alignment stable */
-    padding: 4px 10px;
+        #StatsGalleryCount {
+            background: #007ec6;
+        }
 
-    color: #000;
-}
+        @media (max-width: 768px) {
+            .slideshow-block .overlay {
+                opacity: 1;
+                transform: none;
 
-/* COLORS */
-#StatsImageCount {
-    background: #4c1;
-}
+                width: 100%;
+                border-radius: 0;
 
-#StatsGalleryCount {
-    background: #007ec6;
-}
+                font-size: 1rem;
+                padding: 10px;
 
-@media (max-width: 768px) {
-    .slideshow-block .overlay {
-        opacity: 1;
-        transform: none;
+                background: rgba(0, 0, 0, 0.65);
+            }
+        }
 
-        width: 100%;
-        border-radius: 0;
+        /* TOP "MODE SWITCH" BAR START */
+        .mode-bar {
+            position: sticky;
+            top: 0;
+            z-index: 9998;
 
-        font-size: 1rem;
-        padding: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
 
-        background: rgba(0, 0, 0, 0.65);
-    }
-}
+            padding: 12px;
 
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        /* buttons */
+        .mode-btn {
+            position: relative;
+
+            padding: 12px 16px;
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            color: #fff;
+            font-weight: 600;
+
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+
+            transition: all 0.2s ease;
+        }
+
+        /* hover effect */
+        .mode-btn:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.18);
+            /* brighter than before */
+            border-color: rgba(255, 255, 255, 0.55);
+            box-shadow:
+                0 14px 40px rgba(0, 0, 0, 0.45),
+                0 0 12px rgba(255, 255, 255, 0.08);
+        }
+
+        /* ACTIVE STATE */
+        .mode-btn.active {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.6);
+
+            color: #fff;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 34px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+        }
+
+        /* animated underline effect */
+        .mode-btn::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 6px;
+            width: 0%;
+            height: 2px;
+            background: white;
+            transition: all 0.25s ease;
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+
+        .mode-btn:hover::after {
+            width: 60%;
+            opacity: 0.8;
+        }
+
+        .mode-btn.active::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 6px;
+
+            width: 60%;
+            height: 2px;
+
+            transform: translateX(-50%);
+
+            background: linear-gradient(90deg, transparent, white, transparent);
+            opacity: 0.9;
+        }
+
+        /* mobile tuning */
+        @media (max-width: 600px) {
+            .mode-bar {
+                gap: 6px;
+                padding: 10px;
+            }
+
+            .mode-btn {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+        }
+
+        .mode-btn.last-active {
+            background: rgba(255, 255, 255, 0.10);
+            border-color: rgba(255, 255, 255, 0.25);
+            color: rgba(255, 255, 255, 0.75);
+            transform: translateY(-1px);
+            transition: all 0.25s ease;
+        }
+
+        /* TOP "MODE SWITCH" BAR END */
+
+        #spotlight-container .portfolio-images img.landscape {
+            order: 1;
+        }
+
+        #spotlight-container .portfolio-images img.portrait {
+            order: 2;
+        }
+
+        /* review section tags */
+        .review-tags {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .review-tag {
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            cursor: default;
+            transition: 0.2s ease;
+        }
+
+        .review-tag[data-target] {
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .review-tag[data-target]:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .review-photo-strip {
+            display: flex;
+            gap: 6px;
+            margin: 10px 0;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .review-photo-strip img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 6px;
+            flex: 0 0 auto;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .review-photo-strip img:hover {
+            transform: scale(1.1);
+        }
+
+        
+
+        /* MODAL */
+        .image-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -565,17 +761,188 @@
 
     </header>
 
+    <div class="mode-bar">
+        <button class="mode-btn" data-view="spotlight">Spotlight</button>
+        <button class="mode-btn" data-view="gallery">Gallery</button>
+        <button class="mode-btn" data-view="search">Search</button>
+        <button class="mode-btn" data-view="reviews">Reviews</button>
+    </div>
+
     <div class="page-wrapper">
         <div id="portfolio-container"></div>
+        <div id="spotlight-container"></div>
         <div class="slideshow-container"></div>
+        <div id="reviews-container"></div>
     </div>
 
     <!-- Back to Top Buttons -->
     <button onclick="scrollToTop()" id="backToTop" title="Back to Top">↑ Top</button>
     <button onclick="scrollToAlbums()" id="backToAlbums" title="Back to Albums">← Back to Albums</button>
 
+    <div id="imageModal" class="image-modal">
+        <span class="close-modal">&times;</span>
+        <img id="modalImg" />
+    </div>
+
     <script>
+        const views = {
+            spotlight: {
+                container: document.getElementById('spotlight-container')
+            },
+            gallery: {
+                albums: document.querySelector('.slideshow-container'),
+                portfolio: document.getElementById('portfolio-container'),
+            },
+            search: null, // future tagging system page
+            reviews: null, // future
+            active: 'gallery'
+        };
+
+        const modeButtons = document.querySelectorAll('.mode-btn');
+
+        let lastMode = 'gallery';
+
         const imageSize = "&width=800&height=600";
+
+        const reviewsData = [
+            {
+                name: "--ExCel London--",
+                role: "Venue",
+                text: "ExCel London is located in East London and is connected via several public transport links. There is the London City Airport close by and the Elizibeth line train at Custom House for Excel. I travel from Wales so that means that my London Terminus is Paddigton. I then get the underground and then change for the DLR. not a diffuclt journy but could take anywere from 60 to 90 minutes. That changed with the Elizibeth Line. I still get on at Paddington but its now about 25 minutes and no need to change to get to Custom House for Excel.",
+                rating: 5,
+
+                tags: ["MCM | MCM London", "egx", "RTX", "Star Wars Celebration", "megacon london"]
+            },
+
+            {
+                name: "--National Exhibition Centre (NEC) Birmingham--",
+                role: "Venue",
+                text: "The National Exhibition Centre (NEC) is hub. This hub consisits of the NEC, hotels, airport and national express.",
+                rating: 5,
+
+                tags: ["megacon birmingham", "MCM | MCM Birmingham", "Insomina Gaming Festival", "vexpo", "Destination Star Trek"]
+            },
+
+            {
+                name: "--Cardiff International Arena--",
+                role: "Venue",
+                text: "...",
+                rating: 5,
+
+                tags: ["showmasters | film and comic con cardiff"]
+            },
+
+            {
+                name: "--Insomnia Gaming Festival--",
+                role: "Event",
+                text: "This event is split into 2 parts. you have the convention side, which is your typical convention but with more of a gaming focus, then you have the LAN side. The LAN offers a space that is open from 6PM Friday to 6PM Sunday - a full 72 hours. There are also facilties that are open for LAN",
+                rating: 5,
+
+                tags: ["Insomina Gaming Festival"]
+            },
+
+            {
+                name: "--Cosxpo--",
+                role: "Event",
+                text: "...",
+                rating: 5,
+
+                tags: ["Cosxpo"]
+            },
+
+            {
+                name: "--Bewt Studios--",
+                role: "Venue",
+                text: "...",
+                rating: 5,
+
+                tags: ["Bewt Studios"]
+            },
+
+            {
+                name: "--Gamescom--",
+                role: "Event",
+                text: "...",
+                rating: 5,
+
+                tags: ["gamescom"]
+            },
+
+            {
+                name: "--Fuel Your Fire--",
+                role: "Event",
+                text: "...",
+                rating: 5,
+
+                tags: ["fuel your fire"]
+            },
+
+            {
+                name: "--Optimus--",
+                role: "Event",
+                text: "...",
+                rating: 5,
+
+                tags: ["optimus"]
+            },
+
+            {
+                name: "--MCM London--",
+                role: "Event",
+                text: "...",
+                rating: 5,
+
+                tags: ["MCM | MCM London"]
+            },
+
+            {
+                name: "--MCM Birmingham--",
+                role: "Event",
+                text: "...",
+                rating: 5,
+
+                tags: ["MCM | MCM Birmingham"]
+            },
+
+            {
+                name: "--RTX--",
+                role: "Event",
+                text: "...",
+                rating: 5,
+
+                tags: ["RTX"]
+            },
+
+            {
+                name: "--Twitch Con Europe--",
+                role: "Event",
+                text: "...",
+                rating: 5,
+
+                tags: ["twitch | twitch con EU"]
+            },
+
+            {
+                name: "--Vexpo--",
+                role: "Event",
+                text: "...",
+                rating: 5,
+
+                tags: ["vexpo"]
+            }
+
+        ];
+
+        const spotlightCategories = [
+            "Wedding",
+            "Triple Threat Cosplay",
+            "Edits",
+            "Rooster Teeth | RWBY",
+            "Bewt Studios",
+            "Ashleigh Jay Cosplay",
+            "Gothams Candy",
+            "As December Falls"
+        ];
 
         const galleryData = [
             // Add new gallery here:
@@ -591,8 +958,8 @@
                     { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQSHXtpHo026TYqCq8zV0wFDAY0WLgvFJgztM7sv4vjGme8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5633.JPG", tags: ["megacon", "megacon birmingham", "sonic | dr robotnik", "sonic", "edits"] },
                     { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQQwNfSyCKt7QqbtoaaMi-hbAdRWrwg1lshfLxIMV22dhNI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5646.JPG", tags: ["megacon", "megacon birmingham", "helldivers"] },
                     { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQQi4hs3WN_RQItlA4xEw3NrAUj9R-ozxu2tUgTfDY1ZwuI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5651.JPG", tags: ["megacon", "megacon birmingham", "edits"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQThF8NAEbaPT4UFc2GAB6I0ASk5kbRZYK0V_DswlDKH9ww?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5663.JPG", tags: ["megacon", "megacon birmingham", "rooster teeh", "rooster teeth | RWBY", "edits"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQRIjYEOD1abTLU__nxZ5tcgAUYT_4fXEwT4s1-piDbOmp0?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5668.JPG", tags: ["megacon", "megacon birmingham", "rooster teeh", "rooster teeth | RWBY"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQThF8NAEbaPT4UFc2GAB6I0ASk5kbRZYK0V_DswlDKH9ww?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5663.JPG", tags: ["megacon", "megacon birmingham", "rooster teeth", "rooster teeth | RWBY", "edits"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQRIjYEOD1abTLU__nxZ5tcgAUYT_4fXEwT4s1-piDbOmp0?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5668.JPG", tags: ["megacon", "megacon birmingham", "rooster teeth", "rooster teeth | RWBY"] },
                     { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQQOhJH4AnuASI2sO78npK5IAXuo3a63h3yfrJaJdueMdGQ?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5701.JPG", tags: ["megacon", "megacon birmingham", "edits"] },
                     { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQQNVo0GMws7Rb6rjOmwKJhaAZiIVd6JgEXBcUnU5b1TwhA?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5703.JPG", tags: ["megacon", "megacon birmingham"] },
 
@@ -617,7 +984,7 @@
                     { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQTQ99G5_a26R6IHjKehEzyAAVRFK3gqFfv749__KEWv4Lo?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5657.JPG", tags: ["megacon", "megacon birmingham", "the boys", "the boys | starlight"] },
                     { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQTNDbc42XMERIFzYwZO7syXAedekN-ebL5P4WIWK73y87g?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5659.JPG", tags: ["megacon", "megacon birmingham", "attack on titan"] },
                     { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQRnY1sYS1zOTo1PBHpIUmasARXnEmQs1h8QrsB2fJr4ymo?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5661.JPG", tags: ["megacon", "megacon birmingham", "attack on titan"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQSbuOkx8z7yTYbCpQLYJkI2AbSKGAhc4Jr03K0m8PiSFMI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5665.JPG", tags: ["megacon", "megacon birmingham", "rooster teeh", "rooster teeth | RWBY"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQSbuOkx8z7yTYbCpQLYJkI2AbSKGAhc4Jr03K0m8PiSFMI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5665.JPG", tags: ["megacon", "megacon birmingham", "rooster teeth", "rooster teeth | RWBY"] },
                     { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQReavE3iiWyS76inZdRqzGIAQhZ2XXQbJGlch3oTv8tFOY?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5705.JPG", tags: ["megacon", "megacon birmingham", "fallout"] },
                     { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQTmCEc3WD8sSYmqE2vWRUdtAcqyLkxemFFn66g7_vigEhw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202603_megacon-Birmingham/DSC_5706.JPG", tags: ["megacon", "megacon birmingham", "dragonball", "dragonball | goku"] },
                 ]
@@ -1760,61 +2127,61 @@
                 title: "2023.04: Star Wars Celebration",
                 year: "2023",
                 images: [
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGwuwAAAAAAPHX9JgXywxTMP4?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2391.JPG", tags: ["star wars", "Edits"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGxewAAAAAAHEukXJBRG-jYz8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2408.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGyewAAAAAAPq7SlvTY9u0Ak4?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2423.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGyuwAAAAAAD9nh1eYvlQgXCw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2433.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGzOwAAAAAAOaMdQqn557iEoI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2439.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGzuwAAAAAAAMdppy4qw0X4PI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2445.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGz-wAAAAAAJIHnd2PCeLplkg?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2446.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG1OwAAAAAAGOKg35ieWrR3V4?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2451.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG0uwAAAAAANAEm5sE9gDmAmw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2453.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG0-wAAAAAAIvwYVk3EUWcfT8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2454.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG1ewAAAAAAKK39lt7eLP-yl8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2539.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG2OwAAAAAADVNHkLJcFDd5hc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2543.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG1-wAAAAAAEPuwSDK1rATJ4c?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2546.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG2-wAAAAAAI45us9zLsdu1gw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2552.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG3OwAAAAAAL8epwe-wnSCIbI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2555.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG4ewAAAAAAHEpt5-EhTmQoLQ?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2559.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG3uwAAAAAAZGBYEtdB9ltLe4N29hpMOw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2564.JPG", tags: ["star wars", "tabitha lyons"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG4uwAAAAAAB9qE6NasmIkZHw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2567.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG6ewAAAAAABCJloxDz6_d8GU?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2569.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG5ewAAAAAAPdI71wyOxokBk8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2571.JPG", tags: ["star wars", "tabitha lyons"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG5OwAAAAAAHtYhc1bIn-FOJk?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2572.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG5-wAAAAAAOywS32eTOBIyGE?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2609.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG8OwAAAAAAIdJHzffEsqm42s?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2621.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG8uwAAAAAAPTiuKPOHer88Pk?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2628.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG8ewAAAAAAF5msebdufr-x6Q?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2632.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG7-wAAAAAAP6rF36Xpf-G-tY?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2642.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG8-wAAAAAAJIF-RRplgG3cLo?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2650.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG9OwAAAAAAAeMebsgqrXrHeg?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2651.JPG", tags: ["star wars", "Edits"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGwuwAAAAAAPHX9JgXywxTMP4?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2391.JPG", tags: ["star wars", "Edits", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGxewAAAAAAHEukXJBRG-jYz8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2408.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGyewAAAAAAPq7SlvTY9u0Ak4?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2423.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGyuwAAAAAAD9nh1eYvlQgXCw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2433.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGzOwAAAAAAOaMdQqn557iEoI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2439.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGzuwAAAAAAAMdppy4qw0X4PI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2445.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGz-wAAAAAAJIHnd2PCeLplkg?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2446.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG1OwAAAAAAGOKg35ieWrR3V4?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2451.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG0uwAAAAAANAEm5sE9gDmAmw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2453.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG0-wAAAAAAIvwYVk3EUWcfT8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2454.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG1ewAAAAAAKK39lt7eLP-yl8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2539.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG2OwAAAAAADVNHkLJcFDd5hc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2543.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG1-wAAAAAAEPuwSDK1rATJ4c?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2546.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG2-wAAAAAAI45us9zLsdu1gw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2552.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG3OwAAAAAAL8epwe-wnSCIbI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2555.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG4ewAAAAAAHEpt5-EhTmQoLQ?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2559.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAG3uwAAAAAAZGBYEtdB9ltLe4N29hpMOw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2564.JPG", tags: ["star wars", "tabitha lyons", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG4uwAAAAAAB9qE6NasmIkZHw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2567.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG6ewAAAAAABCJloxDz6_d8GU?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2569.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG5ewAAAAAAPdI71wyOxokBk8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2571.JPG", tags: ["star wars", "tabitha lyons", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG5OwAAAAAAHtYhc1bIn-FOJk?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2572.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG5-wAAAAAAOywS32eTOBIyGE?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2609.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG8OwAAAAAAIdJHzffEsqm42s?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2621.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG8uwAAAAAAPTiuKPOHer88Pk?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2628.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG8ewAAAAAAF5msebdufr-x6Q?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2632.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG7-wAAAAAAP6rF36Xpf-G-tY?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2642.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG8-wAAAAAAJIF-RRplgG3cLo?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2650.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG9OwAAAAAAAeMebsgqrXrHeg?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2651.JPG", tags: ["star wars", "Edits", "Star Wars Celebration"] },
 
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGwOwAAAAAAFvmqZ_RUT-CzVE?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2387.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGv-wAAAAAAE1cPsrNnpzGQWA?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2388.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGwewAAAAAAHIIWeaZx5eKGrM?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2390.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG0OwAAAAAAEsi3vrUW3asUPA?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2392.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG0ewAAAAAAKQQfXoHBTEBK9U?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2396.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGxOwAAAAAADpKXLNEW5SN2ps?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2401.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGw-wAAAAAAN0ltHy3eAd2Z2E?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2402.JPG", tags: ["star wars", "Edits"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGx-wAAAAAACTl-5dX5gSphqc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2413.JPG", tags: ["star wars", "Edits"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGyOwAAAAAAMq4JlR8r1KbgrQ?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2415.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGxuwAAAAAANrhZB-In8PkFgY?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2420.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGzewAAAAAAKtjUuVshwGfh04?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2431.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGy-wAAAAAAP4IeoswlIFwb_o?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2441.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG1uwAAAAAALqqQOiDBq0cpik?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2545.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG2uwAAAAAAD14kQP7TEtvCGs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2547.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG2ewAAAAAAPVgQOTRIQ827Rk?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2548.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG3-wAAAAAAA5hYutBQnKjwrs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2550.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG4OwAAAAAAESepamAMb1317E?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2551.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG3ewAAAAAAKc0sJ3b0Wys1-Q?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2558.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG6uwAAAAAAHRLjbIbNR_8ApE?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2568.JPG", tags: ["star wars"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGwOwAAAAAAFvmqZ_RUT-CzVE?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2387.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGv-wAAAAAAE1cPsrNnpzGQWA?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2388.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGwewAAAAAAHIIWeaZx5eKGrM?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2390.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG0OwAAAAAAEsi3vrUW3asUPA?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2392.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG0ewAAAAAAKQQfXoHBTEBK9U?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2396.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGxOwAAAAAADpKXLNEW5SN2ps?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2401.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGw-wAAAAAAN0ltHy3eAd2Z2E?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2402.JPG", tags: ["star wars", "Edits", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGx-wAAAAAACTl-5dX5gSphqc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2413.JPG", tags: ["star wars", "Edits", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGyOwAAAAAAMq4JlR8r1KbgrQ?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2415.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGxuwAAAAAANrhZB-In8PkFgY?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2420.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGzewAAAAAAKtjUuVshwGfh04?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2431.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGy-wAAAAAAP4IeoswlIFwb_o?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2441.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG1uwAAAAAALqqQOiDBq0cpik?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2545.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG2uwAAAAAAD14kQP7TEtvCGs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2547.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG2ewAAAAAAPVgQOTRIQ827Rk?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2548.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG3-wAAAAAAA5hYutBQnKjwrs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2550.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG4OwAAAAAAESepamAMb1317E?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2551.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG3ewAAAAAAKc0sJ3b0Wys1-Q?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2558.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG6uwAAAAAAHRLjbIbNR_8ApE?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2568.JPG", tags: ["star wars", "Star Wars Celebration"] },
                     { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG4-wAAAAAAJxado12e_F7DjE?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2570.JPG", tags: ["star wars", "tabitha lyons", "Edits"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG5uwAAAAAAOSbVkz5TE5zKHg?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2574.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG6OwAAAAAABSIch0zRAcTCVw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2575.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG7OwAAAAAAPG0Q9FjI9gw9LI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2610.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG7ewAAAAAAMIfK6GIf5C9vDg?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2617.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG6-wAAAAAAHXFAYeRYnzlzKA?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2620.JPG", tags: ["star wars"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG7uwAAAAAANMBk_WvZmHXkfM?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2638.JPG", tags: ["star wars"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG5uwAAAAAAOSbVkz5TE5zKHg?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2574.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG6OwAAAAAABSIch0zRAcTCVw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2575.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG7OwAAAAAAPG0Q9FjI9gw9LI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2610.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG7ewAAAAAAMIfK6GIf5C9vDg?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2617.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG6-wAAAAAAHXFAYeRYnzlzKA?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2620.JPG", tags: ["star wars", "Star Wars Celebration"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG7uwAAAAAANMBk_WvZmHXkfM?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/202304_star-wars-celebration/DSC_2638.JPG", tags: ["star wars", "Star Wars Celebration"] },
                 ]
             },
 
@@ -2866,61 +3233,61 @@
                 title: "2019.10.25: Destination Star Trek",
                 year: "2019",
                 images: [
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG38wAAAAAAH6AadggwMIpF7g?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8980.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG4MwAAAAAAMaXHdzdxjtsXQc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8981.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG4cwAAAAAAMGrZ2t4cV2o-R0?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8982.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG5cwAAAAAACB-JummbLdpycY?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8985.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG48wAAAAAAIkg04TDm_KsN7Q?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8990.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG5swAAAAAAGsLtAc57M44lak?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8991.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG5MwAAAAAAE45s42aCViXw2U?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8992.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG68wAAAAAAA1a1qlynewqujs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9002.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG7MwAAAAAAP9WAXLRSqaxSvc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9003.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG6swAAAAAADM7QMKgFWegqMM?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9005.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG78wAAAAAAAeCiWj3BnAJqiY?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9017.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG8cwAAAAAABBYntU1gS5Jylc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9019.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG9MwAAAAAAFyLnZ63gH1EfPk?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9020.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG8swAAAAAAO7OaHp3d71da8U?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9021.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG-cwAAAAAALuZanrum0L9rws?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9029.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG-MwAAAAAANHDivIdg0QvOoU?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9031.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG-swAAAAAAJI76_LpbXgEK5Y?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9038.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG_swAAAAAAEfby3kGZEJ3ow4?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9051.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG_MwAAAAAAF6tdIVQFpLcn2Y?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9053.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGAM0AAAAAAJ2sAs9On89i1IA?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9060.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGAs0AAAAAALVNUzj-QLb4A-o?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9066.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGCc0AAAAAAMNEl9O426eGJoc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9070.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGC80AAAAAAKlIiEEdXIpzQj8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9071.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGBc0AAAAAAEwEHbSE8kBqJk0?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9085.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGBM0AAAAAAKgupgFsaXQBAJ8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9087.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGD80AAAAAAAf8Y5enrYbWgNc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9109.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGDs0AAAAAAONojuwh0Em1r_s?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9112.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGFc0AAAAAABUm_O7ecnVPmK8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9117.JPG", tags: ["star trek", "mike fatum", "star trek online"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG38wAAAAAAH6AadggwMIpF7g?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8980.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG4MwAAAAAAMaXHdzdxjtsXQc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8981.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG4cwAAAAAAMGrZ2t4cV2o-R0?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8982.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG5cwAAAAAACB-JummbLdpycY?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8985.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG48wAAAAAAIkg04TDm_KsN7Q?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8990.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG5swAAAAAAGsLtAc57M44lak?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8991.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG5MwAAAAAAE45s42aCViXw2U?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8992.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG68wAAAAAAA1a1qlynewqujs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9002.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG7MwAAAAAAP9WAXLRSqaxSvc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9003.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG6swAAAAAADM7QMKgFWegqMM?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9005.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG78wAAAAAAAeCiWj3BnAJqiY?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9017.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG8cwAAAAAABBYntU1gS5Jylc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9019.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG9MwAAAAAAFyLnZ63gH1EfPk?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9020.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG8swAAAAAAO7OaHp3d71da8U?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9021.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG-cwAAAAAALuZanrum0L9rws?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9029.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG-MwAAAAAANHDivIdg0QvOoU?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9031.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG-swAAAAAAJI76_LpbXgEK5Y?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9038.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG_swAAAAAAEfby3kGZEJ3ow4?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9051.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG_MwAAAAAAF6tdIVQFpLcn2Y?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9053.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGAM0AAAAAAJ2sAs9On89i1IA?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9060.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGAs0AAAAAALVNUzj-QLb4A-o?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9066.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGCc0AAAAAAMNEl9O426eGJoc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9070.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGC80AAAAAAKlIiEEdXIpzQj8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9071.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGBc0AAAAAAEwEHbSE8kBqJk0?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9085.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGBM0AAAAAAKgupgFsaXQBAJ8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9087.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGD80AAAAAAAf8Y5enrYbWgNc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9109.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGDs0AAAAAAONojuwh0Em1r_s?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9112.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGFc0AAAAAABUm_O7ecnVPmK8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9117.JPG", tags: ["star trek", "mike fatum", "star trek online", "Destination Star Trek"] },
 
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG4swAAAAAANIH_s7GrcbvmPc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8984.JPG", tags: ["judge dredd"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG58wAAAAAABTVlA4uG9M7kFE?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8995.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG6MwAAAAAAHupHQjyBCOXO2c?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8997.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG6cwAAAAAAApFQA3x_Y_qxpI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9000.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG7cwAAAAAADUOuKnDDMTCkcc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9011.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG7swAAAAAAEd_4thZUZYVvHc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9013.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG88wAAAAAACMLzCwSxm6zGfY?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9014.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG8MwAAAAAAGOHaNnRWLXex7Y?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9024.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG9cwAAAAAAFPBl6DmI-rddcI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9026.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG9swAAAAAACQ8BAGexUQ3og4?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9035.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG98wAAAAAAEcZCzpaZAAvgFg?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9039.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG-8wAAAAAAIkqjmBmlxQVoII?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9048.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG_cwAAAAAAO4WqQuuJs-ujHw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9059.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG_8wAAAAAAPfNFc6Uk1SHHTs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9061.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGAc0AAAAAAMRc7DJl2hqPtcs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9065.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGA80AAAAAAHbcbExeaEOqdj0?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9069.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGCM0AAAAAAMef3w5TFU6M3Og?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9084.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGB80AAAAAAM89AQoHFVVbZP4?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9094.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGBs0AAAAAAGpifl6FIGHTOHs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9095.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGDM0AAAAAABtKjaOSrBiYf2Q?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9102.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGCs0AAAAAAM6JPqKGGb8taK8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9106.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGDc0AAAAAAPIVt-h-w2tbNU4?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9108.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGEM0AAAAAAN-j9YC4UU8cT2g?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9115.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAGEs0AAAAAAS0d_BKTH9O54IzVv2vA9eg?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9118.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAGFs0AAAAAAenyMMWRL8uNzsm_PoXMNxM?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9121.JPG", tags: ["star trek"] },
-                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAGE80AAAAAAfsPXAzOOmzD8DzqE_4FAOc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9124.JPG", tags: ["star trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG4swAAAAAANIH_s7GrcbvmPc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8984.JPG", tags: ["judge dredd", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG58wAAAAAABTVlA4uG9M7kFE?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8995.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG6MwAAAAAAHupHQjyBCOXO2c?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_8997.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG6cwAAAAAAApFQA3x_Y_qxpI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9000.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG7cwAAAAAADUOuKnDDMTCkcc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9011.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG7swAAAAAAEd_4thZUZYVvHc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9013.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG88wAAAAAACMLzCwSxm6zGfY?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9014.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG8MwAAAAAAGOHaNnRWLXex7Y?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9024.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG9cwAAAAAAFPBl6DmI-rddcI?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9026.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG9swAAAAAACQ8BAGexUQ3og4?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9035.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG98wAAAAAAEcZCzpaZAAvgFg?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9039.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG-8wAAAAAAIkqjmBmlxQVoII?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9048.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG_cwAAAAAAO4WqQuuJs-ujHw?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9059.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAG_8wAAAAAAPfNFc6Uk1SHHTs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9061.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGAc0AAAAAAMRc7DJl2hqPtcs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9065.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGA80AAAAAAHbcbExeaEOqdj0?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9069.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGCM0AAAAAAMef3w5TFU6M3Og?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9084.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGB80AAAAAAM89AQoHFVVbZP4?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9094.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGBs0AAAAAAGpifl6FIGHTOHs?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9095.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGDM0AAAAAABtKjaOSrBiYf2Q?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9102.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGCs0AAAAAAM6JPqKGGb8taK8?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9106.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGDc0AAAAAAPIVt-h-w2tbNU4?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9108.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/UQS8PLHA2hZMIIAGEM0AAAAAAN-j9YC4UU8cT2g?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9115.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAGEs0AAAAAAS0d_BKTH9O54IzVv2vA9eg?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9118.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAGFs0AAAAAAenyMMWRL8uNzsm_PoXMNxM?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9121.JPG", tags: ["star trek", "Destination Star Trek"] },
+                    { url: "https://1drv.ms/i/c/064c16dac0b13cbc/IQS8PLHA2hZMIIAGE80AAAAAAfsPXAzOOmzD8DzqE_4FAOc?", fallbackUrl: "https://raw.githubusercontent.com/andrewbaylissphotography/web/main/img/20191025_dst/DSC_9124.JPG", tags: ["star trek", "Destination Star Trek"] },
                 ]
             },
 
@@ -7785,7 +8152,7 @@
                 overlay.textContent = gallery.title;
                 block.appendChild(overlay);
 
-                // Label
+                // Label - can remove since galleries have text overlay
                 /*                 const label = document.createElement('div');
                                 label.className = 'section-label';
                                 label.textContent = gallery.title;
@@ -7934,7 +8301,6 @@
 
 
         // <!-- TOTAL URL COUNT:Start -->
-
         // Loop through galleryData and count all image objects with a 'url'
         let urlCount = 0;
 
@@ -7945,18 +8311,17 @@
         }
 
         // Display the count in the element with ID 'StatsImageCount'
-const countDisplay = document.getElementById('StatsImageCount');
-if (countDisplay) {
-    countDisplay.innerHTML = `
+        const countDisplay = document.getElementById('StatsImageCount');
+        if (countDisplay) {
+            countDisplay.innerHTML = `
         <span class="badge-label">Images</span>
         <span class="badge-value">${urlCount}</span>
     `;
-}
+        }
 
         // <!-- TOTAL URL COUNT:End -->
 
         // <!-- TOTAL Album COUNT:Start -->
-
         // Count number of gallery headers (objects with an 'id')
         let headerCount = 0;
 
@@ -7967,14 +8332,13 @@ if (countDisplay) {
         }
 
         // Display the count in the element with ID 'StatsGalleryCount'
-const headerCountDisplay = document.getElementById('StatsGalleryCount');
-if (headerCountDisplay) {
-    headerCountDisplay.innerHTML = `
+        const headerCountDisplay = document.getElementById('StatsGalleryCount');
+        if (headerCountDisplay) {
+            headerCountDisplay.innerHTML = `
         <span class="badge-label">Events</span>
         <span class="badge-value">${headerCount}</span>
     `;
-}
-
+        }
         // <!-- TOTAL Album COUNT:End -->
 
         // <!-- BannerSlideshow:Begin -->
@@ -8014,6 +8378,387 @@ if (headerCountDisplay) {
         themeSelect.addEventListener('change', (e) => {
             applyTheme(e.target.value);
         });
+
+        // TOP "MODE SWITCH" BAR CORE FUNCTION START
+        function setView(mode) {
+            lastMode = views.active;
+            views.active = mode;
+
+            modeButtons.forEach(btn => {
+                btn.classList.remove('active', 'last-active');
+
+                if (btn.dataset.view === mode) {
+                    btn.classList.add('active');
+                }
+
+                if (btn.dataset.view === lastMode && lastMode !== mode) {
+                    btn.classList.add('last-active');
+                }
+            });
+
+            // hide everything first
+            document.querySelector('.slideshow-container').style.display = 'none';
+            document.getElementById('portfolio-container').style.display = 'none';
+            document.getElementById('spotlight-container').style.display = 'none';
+            document.getElementById('reviews-container').style.display = 'none';
+
+            document.querySelectorAll('#spotlight-container .portfolio-section')
+                .forEach(s => {
+                    s.classList.remove('active');
+                });
+
+            // transitions (nice fade feel)
+            const fadeIn = (el) => {
+                el.style.opacity = 0;
+                el.style.display = el.classList.contains('slideshow-container') ? 'flex' : 'block';
+                requestAnimationFrame(() => {
+                    el.style.transition = 'opacity 0.35s ease';
+                    el.style.opacity = 1;
+                });
+            };
+
+            if (mode === 'gallery') {
+
+                fadeIn(document.querySelector('.slideshow-container'));
+
+                document.getElementById('portfolio-container').style.display = 'block';
+            }
+
+            if (mode === 'search') {
+                console.log("Search mode (hook your tagging UI here)");
+            }
+
+            if (mode === 'reviews') {
+                document.getElementById('reviews-container').style.display = 'block';
+                renderReviews();
+            }
+
+            if (mode === 'spotlight') {
+
+                document.getElementById('spotlight-container').style.display = 'block';
+
+                renderSpotlight();
+            }
+        }
+        // TOP "MODE SWITCH" BAR CORE FUNCTION END
+
+        modeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                setView(btn.dataset.view);
+            });
+        });
+
+        // SPOTLIGHT START
+        function buildSpotlightIndex() {
+            const index = {};
+
+            spotlightCategories.forEach(cat => {
+                index[cat] = [];
+            });
+
+            galleryData.forEach(gallery => {
+                gallery.images.forEach(img => {
+                    const tags = (img.tags || []).map(t => t.toLowerCase());
+
+                    spotlightCategories.forEach(cat => {
+                        if (tags.includes(cat)) {
+                            index[cat].push({
+                                ...img,
+                                sourceGallery: gallery.title
+                            });
+                        }
+                    });
+                });
+            });
+
+            return index;
+        }
+
+        const spotlightIndex = buildSpotlightIndex();
+        // SPOTLIGHT END
+
+
+
+        function renderSpotlight() {
+
+            const portfolioContainer = document.getElementById('spotlight-container');
+
+            // clear previous content
+            portfolioContainer.innerHTML = '';
+
+            spotlightCategories.forEach(category => {
+
+                // collect matching images
+                const matchingImages = [];
+
+                galleryData.forEach(gallery => {
+
+                    gallery.images.forEach(item => {
+
+                        const img = normalizeImage(item);
+
+                        const tags = (img.tags || []).map(t => t.toLowerCase());
+
+                        if (tags.includes(category.toLowerCase())) {
+
+                            matchingImages.push({
+                                ...img,
+                                gallery: gallery.title,
+                                isPortrait: img.url.toLowerCase().includes("portrait")
+                            });
+
+                        }
+
+                    });
+
+                });
+
+                // landscape first, portrait after
+                matchingImages.sort((a, b) => {
+
+                    const aPortrait = a.width < a.height;
+                    const bPortrait = b.width < b.height;
+
+                    return aPortrait - bPortrait;
+                });
+
+                // skip empty categories
+                if (matchingImages.length === 0) return;
+
+                // create section
+                const section = document.createElement('section');
+                section.className = 'portfolio-section active';
+
+                // heading
+                const heading = document.createElement('h2');
+                heading.textContent = category;
+                section.appendChild(heading);
+
+                // image grid
+                const grid = document.createElement('div');
+                grid.className = 'portfolio-images';
+
+                // max 12 images
+                matchingImages.slice(0, 12).forEach(imgData => {
+
+                    const img = document.createElement('img');
+
+                    img.onload = () => {
+
+                        if (img.naturalWidth < img.naturalHeight) {
+                            img.classList.add('portrait');
+                        } else {
+                            img.classList.add('landscape');
+                            grid.prepend(img); // move landscapes to front
+                        }
+                    };
+
+                    img.src = imgData.url;
+                    img.alt = category;
+                    img.loading = 'lazy';
+
+                    // fallback support
+                    if (imgData.fallbackUrl) {
+
+                        img.onerror = () => {
+                            img.onerror = null;
+
+                            let fallback = imgData.fallbackUrl;
+
+                            if (
+                                fallback.includes('1drv.ms') ||
+                                fallback.includes('onedrive.live.com')
+                            ) {
+                                fallback += imageSize;
+                            }
+
+                            img.src = fallback;
+                        };
+                    }
+
+                    setTimeout(() => {
+                        if (!img.classList.contains('landscape')) {
+                            grid.appendChild(img);
+                        }
+                    }, 0);
+
+                });
+
+                section.appendChild(grid);
+
+                portfolioContainer.appendChild(section);
+
+            });
+
+            detectOrientation();
+        }
+
+
+        function renderSpotlightCategory(cat) {
+            const container = document.getElementById('portfolio-container');
+            container.innerHTML = "";
+
+            const items = spotlightIndex[cat] || [];
+
+            const section = document.createElement('section');
+            section.className = "portfolio-section active";
+
+            const title = document.createElement('h2');
+            title.textContent = cat;
+
+            const grid = document.createElement('div');
+            grid.className = "portfolio-images";
+
+            items.slice(0, 12).forEach(img => {
+                const el = document.createElement('img');
+                el.src = img.url;
+                grid.appendChild(el);
+            });
+
+            section.appendChild(title);
+            section.appendChild(grid);
+            container.appendChild(section);
+        }
+
+        const galleryIndex = {};
+
+        galleryData.forEach(g => {
+            galleryIndex[g.title.toLowerCase()] = g;
+        });
+
+
+        function renderReviews() {
+            const container = document.getElementById('reviews-container');
+            container.innerHTML = "";
+
+            const section = document.createElement('section');
+            section.className = "portfolio-section active";
+
+            const title = document.createElement('h2');
+            title.textContent = "Reviews";
+            section.appendChild(title);
+
+            const grid = document.createElement('div');
+            grid.style.display = "flex";
+            grid.style.flexWrap = "wrap";
+            grid.style.gap = "16px";
+
+            reviewsData.forEach(review => {
+
+                const card = document.createElement('div');
+                card.style.padding = "16px";
+                card.style.borderRadius = "8px";
+                card.style.background = "rgba(0,0,0,0.2)";
+                card.style.maxWidth = "420px";
+                card.style.color = "var(--text)";
+
+                const stars = "★".repeat(review.rating || 5);
+
+                // ---- PHOTO STRIP BUILD START ----
+                const strip = document.createElement("div");
+                strip.className = "review-photo-strip";
+
+                const matchedImages = [];
+
+                (review.tags || []).forEach(tag => {
+                    galleryData.forEach(gallery => {
+                        gallery.images.forEach(img => {
+
+                            const imgTags = (img.tags || []).map(t => t.toLowerCase());
+
+                            if (imgTags.some(t => t.includes(tag.toLowerCase()))) {
+                                matchedImages.push(img.url);
+                            }
+                        });
+                    });
+                });
+
+                matchedImages.slice(0, 200).forEach(url => {
+                    const img = document.createElement("img");
+                    img.src = url;
+                    img.loading = "lazy";
+
+                    img.addEventListener("click", () => {
+                        openModal(url);
+                    });
+
+                    strip.appendChild(img);
+                });
+                // ---- PHOTO STRIP BUILD END ----
+
+                // build album/tag links
+                const tagLinks = (review.tags || []).map(tag => {
+                    const match = galleryData.find(g =>
+                        g.title.toLowerCase().includes(tag.toLowerCase()) ||
+                        tag.toLowerCase().includes(g.title.toLowerCase())
+                    );
+
+                    if (match) {
+                        return `<span class="review-tag" data-target="${match.id}">${tag}</span>`;
+                    }
+
+                    return `<span class="review-tag">${tag}</span>`;
+                }).join(" ");
+
+                card.innerHTML = `
+            <strong>${review.name}</strong><br>
+            <small>${review.role}</small>
+            <p>${review.text}</p>
+            <div>${stars}</div>
+        `;
+
+                card.appendChild(strip);
+
+                const tagDiv = document.createElement("div");
+                tagDiv.className = "review-tags";
+                tagDiv.innerHTML = tagLinks;
+
+                card.appendChild(tagDiv);
+
+                grid.appendChild(card);
+            });
+
+            section.appendChild(grid);
+            container.appendChild(section);
+
+            // tag click behaviour
+            document.querySelectorAll(".review-tag[data-target]").forEach(el => {
+                el.addEventListener("click", (e) => {
+                    const id = e.target.dataset.target;
+
+                    e.preventDefault();
+
+                    setTimeout(() => {
+                        const section = document.getElementById(id);
+                        if (section) {
+                            section.classList.add("active");
+                            section.scrollIntoView({ behavior: "smooth" });
+                        }
+                    }, 100);
+                });
+            });
+        }
+
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+        const closeModal = document.querySelector(".close-modal");
+
+        function openModal(src) {
+            modal.classList.add("active");
+            modalImg.src = src;
+        }
+
+        function closeImageModal() {
+            modal.classList.remove("active");
+            modalImg.src = "";
+        }
+
+        closeModal.addEventListener("click", closeImageModal);
+
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) closeImageModal();
+        });
+
     </script>
 
 </body>
