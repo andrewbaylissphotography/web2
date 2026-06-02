@@ -8440,6 +8440,11 @@
                 }
             }
             detectOrientation();
+            handleHashTagRouting();
+        });
+
+        window.addEventListener('hashchange', () => {
+            handleHashTagRouting();
         });
 
         // Back to Top Button
@@ -8585,7 +8590,7 @@
 
             if (mode === 'gallery') {
 
-            clearFilters();
+                clearFilters();
 
                 fadeIn(document.querySelector('.slideshow-container'));
                 document.getElementById('portfolio-container').style.display = 'block';
@@ -8940,7 +8945,7 @@
 
                     (img.tags || []).forEach(tag => {
 
-                        const key = tag.trim();
+                        const key = tag.trim().toLowerCase();
 
                         if (!index[key]) {
                             index[key] = [];
@@ -9008,6 +9013,10 @@
                     chip.addEventListener('click', () => {
                         input.value = tag;
                         dropdown.style.display = 'none';
+
+                        // update URL
+                        history.pushState(null, null, `#${encodeURIComponent(tag)}`);
+
                         renderTagResults(tag);
                     });
 
@@ -9030,6 +9039,7 @@
         }
 
         function renderTagResults(tag) {
+            history.pushState(null, null, `#${encodeURIComponent(tag)}`);
             const gallery = document.getElementById('searchGallery');
             gallery.innerHTML = '';
 
@@ -9084,63 +9094,86 @@
             detectOrientation();
         }
 
-function initSlideshowBlocks() {
-    const blocks = document.querySelectorAll('.slideshow-block');
+        function initSlideshowBlocks() {
+            const blocks = document.querySelectorAll('.slideshow-block');
 
-    console.log("INIT slideshow blocks:", blocks.length);
+            console.log("INIT slideshow blocks:", blocks.length);
 
-    blocks.forEach(block => {
-        console.log("binding:", block.dataset.target);
-    });
+            blocks.forEach(block => {
+                console.log("binding:", block.dataset.target);
+            });
 
-    blocks.forEach(block => {
-        // start slideshow animation
-        startSlideshow(block);
+            blocks.forEach(block => {
+                // start slideshow animation
+                startSlideshow(block);
 
-        // click behaviour (open gallery section)
-        block.addEventListener('click', () => {
-            document.querySelectorAll('section.portfolio-section')
-                .forEach(s => s.classList.remove('active'));
+                // click behaviour (open gallery section)
+                block.addEventListener('click', () => {
+                    document.querySelectorAll('section.portfolio-section')
+                        .forEach(s => s.classList.remove('active'));
 
-            const section = document.getElementById(block.dataset.target);
+                    const section = document.getElementById(block.dataset.target);
 
+                    if (section) {
+                        section.classList.add('active');
+                        section.scrollIntoView({ behavior: 'smooth' });
+
+                        // deep link
+                        history.pushState(null, null, `#${block.dataset.target}`);
+                    }
+                });
+            });
+        }
+
+
+        function clearFilters() {
+
+            // 1. Clear search input
+            const input = document.getElementById("tagSearchInput");
+            if (input) input.value = "";
+
+            // 2. Hide dropdown
+            const dropdown = document.getElementById("tagDropdown");
+            if (dropdown) {
+                dropdown.innerHTML = "";
+                dropdown.style.display = "none";
+            }
+
+            // 3. Clear search results
+            const searchGallery = document.getElementById("searchGallery");
+            if (searchGallery) searchGallery.innerHTML = "";
+
+            // 4. Reset any spotlight/search injected DOM state
+            const searchContainer = document.getElementById("search-container");
+            if (searchContainer) searchContainer.innerHTML = "";
+
+            // 5. Remove active portfolio sections
+            document.querySelectorAll("section.portfolio-section")
+                .forEach(s => s.classList.remove("active"));
+        }
+
+        function handleHashTagRouting() {
+            const hash = window.location.hash.substring(1);
+            if (!hash) return;
+
+            const cleanTag = decodeURIComponent(hash.toLowerCase());
+
+            // check if it's a tag (not a gallery id)
+            if (tagIndex[cleanTag]) {
+                setView('search');          // switch to search mode
+                renderSearch();             // build UI
+                renderTagResults(cleanTag); // show results
+                return;
+            }
+
+            // fallback: existing gallery deep-link logic
+            const section = document.getElementById(hash);
             if (section) {
+                setView('gallery');
                 section.classList.add('active');
                 section.scrollIntoView({ behavior: 'smooth' });
-
-                // deep link
-                history.pushState(null, null, `#${block.dataset.target}`);
             }
-        });
-    });
-}
-
-
-function clearFilters() {
-
-    // 1. Clear search input
-    const input = document.getElementById("tagSearchInput");
-    if (input) input.value = "";
-
-    // 2. Hide dropdown
-    const dropdown = document.getElementById("tagDropdown");
-    if (dropdown) {
-        dropdown.innerHTML = "";
-        dropdown.style.display = "none";
-    }
-
-    // 3. Clear search results
-    const searchGallery = document.getElementById("searchGallery");
-    if (searchGallery) searchGallery.innerHTML = "";
-
-    // 4. Reset any spotlight/search injected DOM state
-    const searchContainer = document.getElementById("search-container");
-    if (searchContainer) searchContainer.innerHTML = "";
-
-    // 5. Remove active portfolio sections
-    document.querySelectorAll("section.portfolio-section")
-        .forEach(s => s.classList.remove("active"));
-}
+        }
 
     </script>
 
