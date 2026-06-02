@@ -206,13 +206,16 @@
 
         /* base image behaviour (IMPORTANT) */
         .portfolio-images img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
             border-radius: 8px;
-            background: #000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ONLY apply fixed sizing in grid mode */
+        .portfolio-section .portfolio-images img {
+            width: 100%;
+            height: 260px;
         }
 
         /* portrait images (tall) */
@@ -672,7 +675,7 @@
             transform: scale(1.1);
         }
 
-        
+
 
         /* MODAL */
         .image-modal {
@@ -703,6 +706,166 @@
             font-size: 40px;
             color: white;
             cursor: pointer;
+        }
+
+        /* search bar */
+        #tagSearchInput {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            box-sizing: border-box;
+        }
+
+        #tagDropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+
+            max-height: 300px;
+            overflow-y: auto;
+
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            z-index: 1000;
+
+            display: none;
+        }
+
+        .search-option {
+            padding: 10px 12px;
+            cursor: pointer;
+        }
+
+        .search-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #tagDropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+
+            max-height: 400px;
+            overflow-y: auto;
+
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 0 0 8px 8px;
+
+            z-index: 1000;
+        }
+
+        .search-option {
+            padding: 10px 12px;
+            cursor: pointer;
+        }
+
+        .search-option:hover {
+            background: rgba(255, 255, 255, .08);
+        }
+
+        .tag-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 8px;
+            padding: 10px;
+
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-top: none;
+
+            max-height: 300px;
+            overflow-y: auto;
+
+            z-index: 1000;
+        }
+
+        .search-dropdown {
+            position: relative;
+            width: 100%;
+            max-width: none;
+        }
+
+        .search-tag {
+            display: block;
+            width: 100%;
+            padding: 10px 12px;
+            text-align: left;
+            border: none;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .search-tag:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #searchGallery {
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+
+        #searchGallery .slideshow-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        #searchGallery .slideshow-block {
+            width: 220px;
+            height: 180px;
+            flex: 0 0 auto;
+        }
+
+        #searchGallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* the bubble */
+        .tag-chip {
+            display: inline-flex;
+            align-items: center;
+
+            padding: 6px 10px;
+            border-radius: 999px;
+
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+
+            color: var(--text);
+            font-size: 13px;
+
+            cursor: pointer;
+            user-select: none;
+
+            transition: 0.2s ease;
+            white-space: nowrap;
+            /* IMPORTANT */
+        }
+
+        .tag-chip:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.08);
         }
     </style>
 </head>
@@ -771,6 +934,7 @@
     <div class="page-wrapper">
         <div id="portfolio-container"></div>
         <div id="spotlight-container"></div>
+        <div id="search-container"></div>
         <div class="slideshow-container"></div>
         <div id="reviews-container"></div>
     </div>
@@ -8159,6 +8323,7 @@
                                 block.appendChild(label); */
 
                 slideshowContainer.appendChild(block);
+                initSlideshowBlocks();
 
                 // Portfolio section
                 const section = document.createElement('section');
@@ -8400,6 +8565,7 @@
             document.querySelector('.slideshow-container').style.display = 'none';
             document.getElementById('portfolio-container').style.display = 'none';
             document.getElementById('spotlight-container').style.display = 'none';
+            document.getElementById('search-container').style.display = 'none';
             document.getElementById('reviews-container').style.display = 'none';
 
             document.querySelectorAll('#spotlight-container .portfolio-section')
@@ -8419,13 +8585,16 @@
 
             if (mode === 'gallery') {
 
-                fadeIn(document.querySelector('.slideshow-container'));
+            clearFilters();
 
+                fadeIn(document.querySelector('.slideshow-container'));
                 document.getElementById('portfolio-container').style.display = 'block';
+                initSlideshowBlocks();
             }
 
             if (mode === 'search') {
-                console.log("Search mode (hook your tagging UI here)");
+                document.getElementById('search-container').style.display = 'block';
+                renderSearch();
             }
 
             if (mode === 'reviews') {
@@ -8758,6 +8927,220 @@
         modal.addEventListener("click", (e) => {
             if (e.target === modal) closeImageModal();
         });
+
+
+        // searching tags START
+        function buildTagIndex() {
+
+            const index = {};
+
+            galleryData.forEach(gallery => {
+
+                gallery.images.forEach(img => {
+
+                    (img.tags || []).forEach(tag => {
+
+                        const key = tag.trim();
+
+                        if (!index[key]) {
+                            index[key] = [];
+                        }
+
+                        index[key].push({
+                            ...img,
+                            gallery: gallery.title
+                        });
+
+                    });
+
+                });
+
+            });
+
+            return index;
+        }
+
+        const tagIndex = buildTagIndex();
+
+        function renderSearch() {
+            const container = document.getElementById('search-container');
+
+            container.innerHTML = `
+        <section class="portfolio-section active">
+            <h2>Search Tags</h2>
+
+            <div class="search-dropdown">
+                <input id="tagSearchInput" placeholder="Search tags..." autocomplete="off">
+                <div id="tagDropdown" class="tag-dropdown"></div>
+            </div>
+
+            <div id="searchGallery"></div>
+        </section>
+    `;
+
+            const input = document.getElementById("tagSearchInput");
+            const dropdown = document.getElementById("tagDropdown");
+
+            // Hide dropdown initially
+            dropdown.style.display = "none";
+
+            function renderTags() {
+                const query = input.value.toLowerCase();
+
+                const tags = Object.keys(tagIndex)
+                    .filter(tag => tag.toLowerCase().includes(query))
+                    .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+
+                dropdown.innerHTML = '';
+
+                if (tags.length === 0) {
+                    dropdown.style.display = "none";
+                    return;
+                }
+
+                dropdown.style.display = "block";
+
+                tags.forEach(tag => {
+                    const chip = document.createElement('div');
+                    chip.className = 'tag-chip';
+                    chip.textContent = `${tag} (${tagIndex[tag].length})`;
+
+                    chip.addEventListener('click', () => {
+                        input.value = tag;
+                        dropdown.style.display = 'none';
+                        renderTagResults(tag);
+                    });
+
+                    dropdown.appendChild(chip);
+                });
+            }
+
+            // Open dropdown on focus
+            input.addEventListener("focus", () => {
+                dropdown.style.display = "block";
+                renderTags();
+            });
+
+            // Update dropdown on typing
+            input.addEventListener("input", () => {
+                dropdown.style.display = "block";
+                renderTags();
+            });
+
+        }
+
+        function renderTagResults(tag) {
+            const gallery = document.getElementById('searchGallery');
+            gallery.innerHTML = '';
+
+            const items = tagIndex[tag] || [];
+
+            const heading = document.createElement('h2');
+            heading.textContent = `${tag} (${items.length})`;
+            gallery.appendChild(heading);
+
+            const container = document.createElement('div');
+            container.className = 'slideshow-container'; // reuse your existing styling
+
+            items.forEach(imgData => {
+
+                const block = document.createElement('div');
+                block.className = 'slideshow-block';
+
+                // image bubble
+                const img = document.createElement('img');
+                img.className = 'slide active';
+                img.src = imgData.url;
+                img.alt = tag;
+
+                img.loading = 'lazy';
+
+                if (imgData.fallbackUrl) {
+                    img.onerror = () => {
+                        img.onerror = null;
+                        img.src = imgData.fallbackUrl;
+                    };
+                }
+
+                block.appendChild(img);
+
+                // overlay label
+                const overlay = document.createElement('div');
+                overlay.className = 'overlay';
+                overlay.textContent = imgData.gallery || tag;
+
+                block.appendChild(overlay);
+
+                // click opens modal
+                block.addEventListener('click', () => {
+                    openModal(img.src);
+                });
+
+                container.appendChild(block);
+            });
+
+            gallery.appendChild(container);
+
+            detectOrientation();
+        }
+
+function initSlideshowBlocks() {
+    const blocks = document.querySelectorAll('.slideshow-block');
+
+    console.log("INIT slideshow blocks:", blocks.length);
+
+    blocks.forEach(block => {
+        console.log("binding:", block.dataset.target);
+    });
+
+    blocks.forEach(block => {
+        // start slideshow animation
+        startSlideshow(block);
+
+        // click behaviour (open gallery section)
+        block.addEventListener('click', () => {
+            document.querySelectorAll('section.portfolio-section')
+                .forEach(s => s.classList.remove('active'));
+
+            const section = document.getElementById(block.dataset.target);
+
+            if (section) {
+                section.classList.add('active');
+                section.scrollIntoView({ behavior: 'smooth' });
+
+                // deep link
+                history.pushState(null, null, `#${block.dataset.target}`);
+            }
+        });
+    });
+}
+
+
+function clearFilters() {
+
+    // 1. Clear search input
+    const input = document.getElementById("tagSearchInput");
+    if (input) input.value = "";
+
+    // 2. Hide dropdown
+    const dropdown = document.getElementById("tagDropdown");
+    if (dropdown) {
+        dropdown.innerHTML = "";
+        dropdown.style.display = "none";
+    }
+
+    // 3. Clear search results
+    const searchGallery = document.getElementById("searchGallery");
+    if (searchGallery) searchGallery.innerHTML = "";
+
+    // 4. Reset any spotlight/search injected DOM state
+    const searchContainer = document.getElementById("search-container");
+    if (searchContainer) searchContainer.innerHTML = "";
+
+    // 5. Remove active portfolio sections
+    document.querySelectorAll("section.portfolio-section")
+        .forEach(s => s.classList.remove("active"));
+}
 
     </script>
 
